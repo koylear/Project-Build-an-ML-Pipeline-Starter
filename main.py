@@ -51,7 +51,7 @@ def go(config: DictConfig):
             )
 
         if "basic_cleaning" in active_steps:
-            # Clean sample.csv and output cleaned_data.csv
+            # Clean sample.csv and output clean_sample.csv
             _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 "main",
@@ -66,12 +66,12 @@ def go(config: DictConfig):
             )
 
         if "data_check" in active_steps:
-            # Check data from cleaned_data.csv
+            # Check data from clean_sample.csv
             _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
                 "main",
                 parameters={
-                    "csv": "cleaned_data.csv:latest",
+                    "csv": "clean_sample.csv:latest",
                     "ref": "clean_sample.csv:reference",
                     "kl_threshold": config['data_check']['kl_threshold'],
                     "min_price": config['etl']['min_price'],
