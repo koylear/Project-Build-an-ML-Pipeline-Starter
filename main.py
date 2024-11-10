@@ -53,13 +53,13 @@ def go(config: DictConfig):
         if "basic_cleaning" in active_steps:
             # Clean sample.csv and output cleaned_data.csv
             _ = mlflow.run(
-                os.path.join(root_path, "src", "basic_cleaning"),
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 "main",
                 parameters={
-                    "input_artifact": "nyc_airbnb/sample.csv:latest", 
-                    "output_artifact": "cleaned_data.csv",
-                    "output_type": "cleaned_data",
-                    "output_description": "Cleaned sample data",
+                    "input_artifact": "sample.csv:latest",
+                    "output_artifact": "clean_sample.csv",
+                    "output_type": "clean_sample",
+                    "output_description": "Data with outliers and null values removed",
                     "min_price": config['etl']['min_price'],
                     "max_price": config['etl']['max_price']
                 },
