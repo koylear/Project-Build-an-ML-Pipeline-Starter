@@ -51,10 +51,19 @@ def go(config: DictConfig):
             )
 
         if "basic_cleaning" in active_steps:
-            ##################
-            # Implement here #
-            ##################
-            pass
+            # Clean sample.csv and output cleaned_data.csv
+            _ = mlflow.run(
+                os.path.join(root_path, "src", "basic_cleaning"),
+                "main",
+                parameters={
+                    "input_artifact": "nyc_airbnb/sample.csv:latest", 
+                    "output_artifact_name": "cleaned_data.csv",
+                    "output_artifact_type": "cleaned_data",
+                    "output_artifact_description": "Cleaned sample data",
+                    "min_price": config['etl']['min_price'],
+                    "max_price": config['etl']['max_price']
+                },
+            )
 
         if "data_check" in active_steps:
             ##################
