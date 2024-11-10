@@ -57,9 +57,9 @@ def go(config: DictConfig):
                 "main",
                 parameters={
                     "input_artifact": "nyc_airbnb/sample.csv:latest", 
-                    "output_artifact_name": "cleaned_data.csv",
-                    "output_artifact_type": "cleaned_data",
-                    "output_artifact_description": "Cleaned sample data",
+                    "output_artifact": "cleaned_data.csv",
+                    "output_type": "cleaned_data",
+                    "output_description": "Cleaned sample data",
                     "min_price": config['etl']['min_price'],
                     "max_price": config['etl']['max_price']
                 },
