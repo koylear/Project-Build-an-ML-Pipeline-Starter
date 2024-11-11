@@ -108,7 +108,7 @@ def go(config: DictConfig):
                         "trainval_artifact": "trainval_data.csv:latest",
                         "output_artifact": "random_forest_export",
                         "test_size": config['modeling']['test_size'],
-                        "val_size": config['modeling']['val_size']
+                        "val_size": config['modeling']['val_size'],
                         "random_seed": config['modeling']['random_seed'],
                         "stratify_by": config['modeling']['stratify_by'],
                         "max_tfidf_features": config['modeling']['max_tfidf_features'],
